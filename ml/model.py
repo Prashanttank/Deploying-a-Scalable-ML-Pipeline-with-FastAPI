@@ -123,6 +123,7 @@ def performance_on_categorical_slice(
         # for input data, use data in column given as "column_name", with the slice_value 
         # use training = False
     )
-    preds = # your code here to get prediction on X_slice using the inference function
+    preds = inference(model, X_slice)  # Assuming `model` and `X_slice` are defined
+
     precision, recall, fbeta = compute_model_metrics(y_slice, preds)
     return precision, recall, fbeta
