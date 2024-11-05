@@ -1,18 +1,20 @@
-import json
-
 import requests
 
-# TODO: send a GET using the URL http://127.0.0.1:8000
-r = None # Your code here
+# Define the base URL for the API
+base_url = "http://127.0.0.1:8000"
 
-# TODO: print the status code
-# print()
-# TODO: print the welcome message
-# print()
+# Send a GET request to the root endpoint
+response = requests.get(base_url)
+print("GET request:")
+print("Status Code:", response.status_code)
+try:
+    # Extract "message" key for a cleaner output
+    print("Result:", response.json().get("message", "No message found"))
+except requests.JSONDecodeError:
+    print("Result: Could not parse JSON. Raw response:", response.text)
 
-
-
-data = {
+# Sample data for the POST request
+sample_data = {
     "age": 37,
     "workclass": "Private",
     "fnlgt": 178356,
@@ -26,13 +28,15 @@ data = {
     "capital-gain": 0,
     "capital-loss": 0,
     "hours-per-week": 40,
-    "native-country": "United-States",
+    "native-country": "United-States"
 }
 
-# TODO: send a POST using the data above
-r = None # Your code here
-
-# TODO: print the status code
-# print()
-# TODO: print the result
-# print()
+# Send a POST request to the /predict/ endpoint
+response = requests.post(f"{base_url}/predict/", json=sample_data)
+print("\nPOST request:")
+print("Status Code:", response.status_code)
+try:
+    # Extract "result" key to display only the prediction result
+    print("Result:", response.json().get("result", "No result found"))
+except requests.JSONDecodeError:
+    print("Result: Could not parse JSON. Raw response:", response.text)
