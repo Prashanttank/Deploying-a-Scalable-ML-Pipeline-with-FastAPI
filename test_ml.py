@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 
 # Load the dataset
-data_path = "/workspace/Deploying-a-Scalable-ML-Pipeline-with-FastAPI/data/census.csv"
+data_path = "data/census.csv"
 data = pd.read_csv(data_path)
 cat_features = [
     "workclass",
